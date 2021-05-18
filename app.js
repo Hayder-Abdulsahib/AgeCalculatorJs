@@ -13,7 +13,9 @@
 
 // This functions should check the integrity of the parameters and pass true/false
 function checkParamsFn(year, month, day) {
-  // Write your code here
+  if (!isNaN(year) && !isNaN(month) && !isNaN(day))
+    return true;
+  else return false;
 }
 
 // This functions checks if the person is or above 18 years of age, return true/false
@@ -34,3 +36,5 @@ function calculateAgeFn(year, month, day) {
 // to what it holds.
 
 module.exports = calculateAgeFn;
+
+console.log(checkParamsFn("d", "f", "d"));
