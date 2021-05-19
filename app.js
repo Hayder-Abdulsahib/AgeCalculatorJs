@@ -15,17 +15,42 @@
 function checkParamsFn(year, month, day) {
   if (!isNaN(year) && !isNaN(month) && !isNaN(day))
     return true;
-  else return false;
+  else
+    return false;
 }
 
 // This functions checks if the person is or above 18 years of age, return true/false
 function checkOverEighteenFn(year, month, day) {
-  // Write your code here
+  let now = new Date();
+  let trueMonth = month - 1;
+  let birth = new Date(year, trueMonth, day);
+  let difference = new Date(now - birth);
+  let hisYear = difference.getUTCFullYear();
+  let age = Math.abs(hisYear - 1970);
+
+  if (age >= 18) return true;
+  else return false;
 }
 
+
+
+
 function calculateAgeFn(year, month, day) {
-  // Write your code here
+  if (checkParamsFn(year, month, day) && checkOverEighteenFn(year, month, day)) {
+    let now = new Date();
+    let trueMonth = month - 1;
+    let birth = new Date(year, trueMonth, day);
+    let difference = new Date(now - birth);
+    let hisYear = difference.getUTCFullYear();
+    let age = Math.abs(hisYear - 1970);
+    return Math.round(age);
+  }
+  else return "error: invalid date"
+
+
 }
+
+console.log(calculateAgeFn(2003, 5, 30));
 
 // Look at the naming of the functions. it looks like salwaBaqer, where
 // the first letter of the first word is small, while the first letter of the
@@ -37,4 +62,3 @@ function calculateAgeFn(year, month, day) {
 
 module.exports = calculateAgeFn;
 
-console.log(checkParamsFn("d", "f", "d"));
