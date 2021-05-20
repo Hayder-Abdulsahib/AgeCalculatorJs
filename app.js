@@ -9,15 +9,20 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
 // https://www.w3schools.com/js/js_dates.asp
 // https://www.digitalocean.com/community/tutorials/understanding-date-and-time-in-javascript
-// HINT: recycling code is never bad practice.
+// HINT: recycling code is never bad practice.  
 
 // This functions should check the integrity of the parameters and pass true/false
 function checkParamsFn(year, month, day) {
-  if (!isNaN(year) && !isNaN(month) && !isNaN(day))
+  let roundedYear, roundedMonth, roundedDay;
+  if (Number.isInteger(year) && Number.isInteger(month) && Number.isInteger(day)) {
     return true;
+  }
   else
     return false;
 }
+
+
+
 
 // This functions checks if the person is or above 18 years of age, return true/false
 function checkOverEighteenFn(year, month, day) {
@@ -36,21 +41,26 @@ function checkOverEighteenFn(year, month, day) {
 
 
 function calculateAgeFn(year, month, day) {
-  if (checkParamsFn(year, month, day) && checkOverEighteenFn(year, month, day)) {
-    let now = new Date();
-    let trueMonth = month - 1;
-    let birth = new Date(year, trueMonth, day);
-    let difference = new Date(now - birth);
-    let hisYear = difference.getUTCFullYear();
-    let age = Math.abs(hisYear - 1970);
-    return Math.round(age);
+  if (checkParamsFn(year, month, day)) {
+    if (checkOverEighteenFn(year, month, day)) {
+      let now = new Date();
+      let trueMonth = month - 1;
+      let birth = new Date(year, trueMonth, day);
+      let difference = new Date(now - birth);
+      let hisYear = difference.getUTCFullYear();
+      let age = Math.abs(hisYear - 1970);
+      return Math.round(age);
+    }
+    else return "error: age smaller that 18"
   }
   else return "error: invalid date"
 
 
 }
 
-console.log(calculateAgeFn(2003, 5, 30));
+
+
+
 
 // Look at the naming of the functions. it looks like salwaBaqer, where
 // the first letter of the first word is small, while the first letter of the
